@@ -1,0 +1,14 @@
+# Standby database
+
+DUPLICATE TARGET DATABASE
+FOR STANDBY
+FROM ACTIVE DATABASE
+DORECOVER
+NOFILENAMECHECK;
+
+-- SQL to check Standby
+
+SELECT client_process, process, thread#, sequence#, status
+FROM v$managed_standby
+WHERE client_process='LGWR' OR PROCESS='MRP0';
+

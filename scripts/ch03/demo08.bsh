@@ -1,0 +1,21 @@
+#!/bin/bash
+#---------------------------------
+export ORACLE_SID=TRG
+#
+sqlplus -s /nolog <<EOF
+connect / as sysdba;
+shutdown immediate;
+startup nomount;
+exit;
+EOF
+#---------------------------------
+rman nocatalog <<EOF
+connect auxiliary /
+duplicate database to TRG
+backup location '/u01/rman/TRG'
+nofilenamecheck;
+exit;
+EOF
+#---------------------------------
+exit 0
+

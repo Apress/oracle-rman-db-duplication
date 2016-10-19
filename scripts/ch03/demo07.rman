@@ -1,0 +1,16 @@
+# Targeless duplication example 6
+
+RUN
+{
+SET NEWNAME FOR DATAFILE 1 TO '/u01/dbfile/DUP/system01.dbf';
+SET NEWNAME FOR DATAFILE 2 TO '/u01/dbfile/DUP/undotbs01.dbf';
+SET NEWNAME FOR DATAFILE 3 TO '/u01/dbfile/DUP/sysaux01.dbf';
+SET NEWNAME FOR DATAFILE 4 TO '/u01/dbfile/DUP/users01.dbf';
+SET NEWNAME FOR DATAFILE 5 TO '/u01/dbfile/DUP/repdata.dbf';
+SET NEWNAME FOR DATAFILE 6 TO '/u01/dbfile/DUP/repidx.dbf';
+SET NEWNAME FOR TEMPFILE 1 TO '/u01/dbfile/DUP/temp01.dbf';
+DUPLICATE TARGET DATABASE TO DUP
+BACKUP LOCATION '/u01/rman/TRG'
+LOGFILE GROUP 1 ('/u01/oraredo/DUP/redo01.rdo') SIZE 50M,
+        GROUP 2 ('/u01/oraredo/DUP/redo02.rdo') SIZE 50M;
+}

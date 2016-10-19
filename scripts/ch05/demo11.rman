@@ -1,0 +1,31 @@
+# Non-RAC to RAC 
+
+DUPLICATE TARGET DATABASE TO DUP
+FROM ACTIVE DATABASE
+  db_file_name_convert '/u01/dbfile/TRG', '+DATA/DUP/datafile'
+logfile group 1
+  ('+DATA/DUP/onlinelog/redot1g1m1.rdo',
+   '+DATA/DUP/onlinelog/redot1g1m2.rdo') size 1073741824,
+group 2
+  ('+DATA/DUP/onlinelog/redot1g2m1.rdo',
+   '+DATA/DUP/onlinelog/redot1g2m2.rdo') size 1073741824,
+group 3
+  ('+DATA/DUP/onlinelog/redot1g3m1.rdo',
+   '+DATA/DUP/onlinelog/redot1g3m2.rdo') size 1073741824
+NOFILENAMECHECK;
+
+
+-- SQL to add redo
+
+ALTER DATABASE ADD LOGFILE THREAD 2
+  GROUP 10
+   ('+DATA/DUP/onlinelog/redot2g10m1.rdo',
+    '+DATA/DUP/onlinelog/redot2g10m2.rdo') SIZE 1073741824,
+  GROUP 11
+   ('+DATA/DUP/onlinelog/redot2g11m1.rdo',
+    '+DATA/DUP/onlinelog/redot2g11m2.rdo') SIZE 1073741824,
+  GROUP 12
+   ('+DATA/DUP/onlinelog/redot2g12m1.rdo',
+    '+DATA/DUP/onlinelog/redot2g12m2.rdo') SIZE 1073741824;
+
+

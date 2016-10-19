@@ -1,0 +1,6 @@
+# Targetless duplication example 1
+
+duplicate database to TRG
+backup location '/u01/rman/TRG'
+nofilenamecheck;
+

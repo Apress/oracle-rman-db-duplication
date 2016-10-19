@@ -1,0 +1,9 @@
+# Targetless duplication example 5
+
+DUPLICATE TARGET DATABASE TO DUP
+BACKUP LOCATION '/u01/rman/TRG'
+  DB_FILE_NAME_CONVERT '/u01/dbfile/TRG','/u01/dbfile/DUP'
+                      ,'/u02/dbfile/TRG','/u02/dbfile/DUP'
+                      ,'/u03/dbfile/TRG','/u03/dbfile/DUP'
+LOGFILE GROUP 1('/u01/oraredo/DUP/redo01a.rdo') SIZE 50m,
+        GROUP 2('/u01/oraredo/DUP/redo02a.rdo') SIZE 50m;

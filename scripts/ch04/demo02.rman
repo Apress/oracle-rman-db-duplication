@@ -1,0 +1,12 @@
+# Active duplication example 2
+
+DUPLICATE TARGET DATABASE TO DUP
+FROM ACTIVE DATABASE
+SPFILE	
+  PARAMETER_VALUE_CONVERT 
+'/u01/dbfile/TRG', '/u01/dbfile/DUP'
+  SET DB_FILE_NAME_CONVERT
+'/u01/dbfile/TRG', '/u01/dbfile/DUP'
+  SET LOG_FILE_NAME_CONVERT
+'/u01/oraredo/TRG', '/u01/oraredo/DUP'
+NOFILENAMECHECK;

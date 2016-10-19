@@ -1,0 +1,23 @@
+#!/bin/bash
+date
+export ORACLE_SID=TRG
+export NLS_DATE_FORMAT='dd-mon-rrrr hh24:mi:ss'
+#
+sqlplus -s /nolog <<EOF
+connect / as sysdba;
+startup nomount;
+select host_name from v\$instance;
+exit;
+EOF
+#---------------------------------
+rman <<EOF
+connect target    sys/foo@TRG1
+connect auxiliary sys/foo@TRG2
+DUPLICATE TARGET DATABASE
+FOR STANDBY
+DORECOVER
+NOFILENAMECHECK;
+EOF
+date
+exit 0
+

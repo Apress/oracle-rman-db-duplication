@@ -1,0 +1,14 @@
+# Targetless duplication example 7
+
+DUPLICATE TARGET DATABASE TO TRG
+BACKUP LOCATION '/u01/rman/TRG'
+db_file_name_convert '/u01/dbfile/TRG','/u01/dbfile/DUP'
+                    ,'/u02/dbfile/TRG','/u02/dbfile/DUP'
+                    ,'/u03/dbfile/TRG','/u03/dbfile/DUP'
+logfile group 1
+  ('/u01/oraredo/DUP/redo01a.rdo',
+   '/u02/oraredo/DUP/redo01b.rdo') size 50m,
+group 2
+('/u01/oraredo/DUP/redo02a.rdo',
+ '/u02/oraredo/DUP/redo02b.rdo') size 50m
+UNTIL TIME "TO_DATE('16-dec-2014 09:00:00', 'dd-mon-rrrr hh24:mi:ss')";

@@ -1,0 +1,9 @@
+# RAC to non-RAC
+
+DUPLICATE TARGET DATABASE TO DUP
+FROM ACTIVE DATABASE
+DB_FILE_NAME_CONVERT '+DATA/rac/datafile','/u01/dbfile/DUP',
+                     '+DATA/rac/tempfile','/u01/dbfile/DUP'
+LOGFILE GROUP 1 ('/u01/oraredo/DUP/redo01.rdo') SIZE 50M,
+        GROUP 2 ('/u01/oraredo/DUP/redo02.rdo') SIZE 50M;
+

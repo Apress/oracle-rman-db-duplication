@@ -1,0 +1,7 @@
+# Excluding tablespaces
+
+duplicate database to TRG
+backup location '/u01/rman/TRG'
+skip tablespace users
+nofilenamecheck;
+

@@ -1,0 +1,17 @@
+# Section size
+
+run{
+allocate channel prmy1 type disk connect 'sys/"foo"@TRG';
+allocate channel prmy2 type disk connect 'sys/"foo"@TRG';
+allocate channel prmy3 type disk connect 'sys/"foo"@TRG';
+allocate channel prmy4 type disk connect 'sys/"foo"@TRG';
+allocate auxiliary channel dup1 type disk;
+allocate auxiliary channel dup2 type disk;
+allocate auxiliary channel dup3 type disk;
+allocate auxiliary channel dup4 type disk;
+DUPLICATE TARGET DATABASE TO TRG
+FROM ACTIVE DATABASE
+SECTION SIZE 8G
+NOFILENAMECHECK;
+}
+
